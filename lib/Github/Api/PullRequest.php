@@ -24,11 +24,10 @@ class PullRequest extends AbstractApi
      *
      * @link https://developer.github.com/v3/pulls/#custom-media-types
      * @param string|null $bodyType
-     * @param string|null $apiVersion
      *
      * @return self
      */
-    public function configure($bodyType = null, $apiVersion = null)
+    public function configure($bodyType = null)
     {
         if (!in_array($apiVersion, array())) {
             $apiVersion = $this->client->getApiVersion();
@@ -179,8 +178,8 @@ class PullRequest extends AbstractApi
 
     public function merge($username, $repository, $id, $message, $sha, $mergeMethod = 'merge', $title = null)
     {
-        if (is_bool($mergeMethod)) {
-            $mergeMethod = $mergeMethod ? 'squash' : 'merge';
+        if (!in_array($mergeMethod, array('squash', 'rebase'))) {
+            $mergeMethod = 'merge';
         }
 
         if (!in_array($mergeMethod, array('merge', 'squash', 'rebase'), true)) {
