@@ -24,10 +24,11 @@ class PullRequest extends AbstractApi
      *
      * @link https://developer.github.com/v3/pulls/#custom-media-types
      * @param string|null $bodyType
+     * @param string|null $apiVersion
      *
      * @return self
      */
-    public function configure($bodyType = null)
+    public function configure($bodyType = null, $apiVersion = null)
     {
         if (!in_array($apiVersion, array())) {
             $apiVersion = $this->client->getApiVersion();
