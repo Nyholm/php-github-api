@@ -182,10 +182,6 @@ class PullRequest extends AbstractApi
             $mergeMethod = $mergeMethod ? 'squash' : 'merge';
         }
 
-        if (!in_array($mergeMethod, array('squash', 'rebase'))) {
-            $mergeMethod = 'merge';
-        }
-
         if (!in_array($mergeMethod, array('merge', 'squash', 'rebase'), true)) {
             throw new InvalidArgumentException(sprintf('"$mergeMethod" must be one of ["merge", "squash", "rebase"] ("%s" given).', $mergeMethod));
         }
